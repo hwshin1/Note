@@ -1,26 +1,16 @@
 public class Main {
     public static void main(String[] args) {
-        float value = 25.0f;
+        // {시전시간, 초당 회복량, 추가 회복량}
+        int[] bandage = {5, 1, 5};
+        // 최대 체력
+        int health = 30;
+        // {{공격시간, 피해량}}
+        int[][] attacks = {{2, 1}, {9, 15}, {10, 5}, {11, 5}};
 
-        float invSqrt = q_rsqrt(value);
+        for (int i = 0; i < attacks.length; i++) {
+            health = health - attacks[i][1];
+        }
 
-        float realInvSqrt = 1.0f / (float) Math.sqrt(value);
-
-        System.out.println("백터 정규화 : " + invSqrt);
-        System.out.println("realInvSqrt = " + realInvSqrt);
-    }
-
-    public static float q_rsqrt(float number) {
-        float x2 = number * 0.5f;
-        float y = number;
-
-        int i = Float.floatToIntBits(y);
-
-        i = 0x5f3579df - (i >> 1);
-        y = Float.intBitsToFloat(i);
-
-        y = y * (1.5f - (x2 * y * y));
-
-        return y;
+        System.out.println(health);
     }
 }
